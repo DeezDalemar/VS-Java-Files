@@ -7,6 +7,8 @@ String output = testInput.nextLine();
 System.out.println(output + " it worked");
 */
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner; 
 
 public class coinCounter {
@@ -18,7 +20,9 @@ public class coinCounter {
         int amountOfNickels;
         int amountOfPennies;
 
-        double totalOfCoins = 0;
+        double storedCoinAmount = 0;
+        double dollarsTotal;
+        double coinsTotal;
 
         Scanner userInput = new Scanner(System.in);
 
@@ -28,31 +32,35 @@ public class coinCounter {
         Integer quarterOutput = userInput.nextInt();
         userInput.nextLine();
         amountOfQuarters = quarterOutput;
-        totalOfCoins += amountOfQuarters * 0.25;
+        storedCoinAmount += amountOfQuarters * 0.25;
 
         System.out.println("How many Dimes are you inputing?");
         Integer dimeOutput = userInput.nextInt();
         userInput.nextLine();
         amountOfDimes = dimeOutput;
-        totalOfCoins += amountOfDimes * 0.10;
+        storedCoinAmount += amountOfDimes * 0.10;
 
         System.out.println("How many Nickles are you inputing?");
         Integer nickleOutput = userInput.nextInt();
         userInput.nextLine();
         amountOfNickels = nickleOutput;
-        totalOfCoins += nickleOutput * 0.05;
+        storedCoinAmount += nickleOutput * 0.05;
 
         System.out.println("How many Pennnies are you inputing?");
         Integer penniesOutput = userInput.nextInt();
         userInput.nextLine();
         amountOfPennies = penniesOutput;
-        totalOfCoins += penniesOutput * 0.01;
+        storedCoinAmount += penniesOutput * 0.01;
+
+        dollarsTotal = ((int) storedCoinAmount);
+        coinsTotal = storedCoinAmount % dollarsTotal;
+        BigDecimal numberBigDecimal = new BigDecimal(coinsTotal);
 
         System.out.println("You have inputed: ");
         System.out.println(amountOfQuarters + " Quarters");
         System.out.println(amountOfDimes + " Dimes");
         System.out.println(amountOfNickels + " Nickels");
         System.out.println(amountOfPennies + " Pennies");
-        System.out.println("Your total is: " + totalOfCoins);
+        System.out.println("Your total is: " + dollarsTotal + " dollars and " + numberBigDecimal.setScale(2, RoundingMode.HALF_UP) + " cents");
     }
 }
